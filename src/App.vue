@@ -1,52 +1,70 @@
 <template>
-  <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+  <div id="app">
+    <v-app>
+      <v-app-bar app color="cyan" dark>
+        <div class="d-flex align-center">
+          <v-icon large class="mr-1">mdi-weather-cloudy</v-icon>
+          <h1>Weather App</h1>
+        </div>
+        <v-spacer></v-spacer>
+        <v-btn href="https://gitlab.com/noghol/tutorials/weather" target="_blank" text>
+          <span class="mr-2 font-weight-bold">GitLab</span>
+          <v-icon>mdi-gitlab</v-icon>
+        </v-btn>
+      </v-app-bar>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+      <v-content>
+        <router-view></router-view>
+      </v-content>
 
-      <v-spacer></v-spacer>
+      <!-- Navigation -->
+      <v-bottom-navigation color="white" background-color="cyan" dark>
+        <v-btn to="/" value="Finder">
+          <span>Finder</span>
+          <v-icon>mdi-cloud-search-outline</v-icon>
+        </v-btn>
 
-      <v-btn href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank" text>
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+        <v-btn to="/weather" value="Weather">
+          <span>Weather</span>
+          <v-icon>mdi-weather-pouring</v-icon>
+        </v-btn>
+      </v-bottom-navigation>
 
-    <v-content>
-      <HelloWorld />
-    </v-content>
-  </v-app>
+      <!-- Footer -->
+      <v-footer dark padless>
+        <v-card class="flex" flat tile>
+          <v-card-text class="py-2 white--text text-center cyan lighten-2">
+            {{ new Date().getFullYear() }} —
+            <strong>Weather App By Alireza</strong>
+          </v-card-text>
+        </v-card>
+      </v-footer>
+    </v-app>
+  </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
-
+// import { mdiGitlab, mdiWeatherCloudy } from "@mdi/js";
+// import Finder from "./components/Finder";
+// import Weather from "./components/Weather";
 export default {
   name: "App",
 
-  components: {
-    HelloWorld
-  },
-
-  data: () => ({
-    //
-  })
+  data() {
+    return {
+      socialLinks: [
+        {
+          id: 1,
+          icon: "mdi-instagram",
+          href: "https://instagram.com/alirezahamidd"
+        },
+        {
+          id: 2,
+          icon: "mdi-gitlab",
+          href: "https://gitlab.com/noghol/tutorials/weather"
+        }
+      ]
+    };
+  }
 };
 </script>

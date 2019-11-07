@@ -7,20 +7,16 @@
           <v-card class="mx-auto" color="#F9F9F9" max-width="400">
             <v-list-item two-line>
               <v-list-item-content>
-                <v-list-item-title class="headline"></v-list-item-title>
-                <v-list-item-subtitle>Mon, 12:30 PM, Mostly sunny</v-list-item-subtitle>
+                <v-list-item-title class="headline">{{weatherData.name}}</v-list-item-title>
+                <v-list-item-subtitle>Mon, 12:30 PM, {{weatherData.weather[0].main}}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
             <v-card-text>
               <v-row align="center">
-                <v-col class="display-3" cols="6">23&deg;C</v-col>
+                <v-col class="display-3" cols="6">{{roundTemp}}&deg;C</v-col>
                 <v-col cols="6">
-                  <v-img
-                    src="https://cdn.vuetifyjs.com/images/cards/sun.png"
-                    alt="Sunny image"
-                    width="92"
-                  ></v-img>
+                  <v-img :src="getIcon" alt="Sunny image" width="100"></v-img>
                 </v-col>
               </v-row>
             </v-card-text>
@@ -29,14 +25,14 @@
               <v-list-item-icon>
                 <v-icon>mdi-send</v-icon>
               </v-list-item-icon>
-              <v-list-item-subtitle>23 km/h</v-list-item-subtitle>
+              <v-list-item-subtitle>{{roundSpeed}} km/h</v-list-item-subtitle>
             </v-list-item>
 
             <v-list-item>
               <v-list-item-icon>
                 <v-icon>mdi-cloud-download</v-icon>
               </v-list-item-icon>
-              <v-list-item-subtitle>48%</v-list-item-subtitle>
+              <v-list-item-subtitle>{{weatherData.main.humidity}}%</v-list-item-subtitle>
             </v-list-item>
 
             <v-slider v-model="time" :max="6" :tick-labels="labels" class="mx-4" ticks></v-slider>
@@ -67,7 +63,8 @@
 
 <script>
 /* eslint-disable */
-import Axios from "axios";
+
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   name: "weather",
   data() {
@@ -86,25 +83,16 @@ export default {
           temp: "22\xB0/14\xB0"
         },
         { day: "Thursday", icon: "mdi-cloud", temp: "25\xB0/15\xB0" }
-      ],
-      weatherData: []
+      ]
     };
   },
-  methods: {
-    getWeather() {
-      Axios.get(
-        "https://api.openweathermap.org/data/2.5/weather?q=London&appid=18ecff4f01cc4ec14938b160ebe1c11d"
-      )
-        .then(req => {
-          this.weatherData = req.data.weather;
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
+  computed: {
+    ...mapState(["weatherData"]),
+    ...mapGetters(["roundTemp", "getIcon", "roundSpeed"])
   },
+  methods: {},
   created() {
-    this.getWeather();
+    this.$store.dispatch("getWeatherData");
   }
 };
 </script>

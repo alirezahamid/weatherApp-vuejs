@@ -3,10 +3,11 @@
     <v-layout wrap>
       <v-row>
         <v-col md="12">
+          <!-- <h1>W: {{weatherData[0].main}}</h1> -->
           <v-card class="mx-auto" color="#F9F9F9" max-width="400">
             <v-list-item two-line>
               <v-list-item-content>
-                <v-list-item-title class="headline">San Francisco</v-list-item-title>
+                <v-list-item-title class="headline"></v-list-item-title>
                 <v-list-item-subtitle>Mon, 12:30 PM, Mostly sunny</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -65,6 +66,8 @@
 </template>
 
 <script>
+/* eslint-disable */
+import Axios from "axios";
 export default {
   name: "weather",
   data() {
@@ -83,8 +86,25 @@ export default {
           temp: "22\xB0/14\xB0"
         },
         { day: "Thursday", icon: "mdi-cloud", temp: "25\xB0/15\xB0" }
-      ]
+      ],
+      weatherData: []
     };
+  },
+  methods: {
+    getWeather() {
+      Axios.get(
+        "https://api.openweathermap.org/data/2.5/weather?q=London&appid=18ecff4f01cc4ec14938b160ebe1c11d"
+      )
+        .then(req => {
+          this.weatherData = req.data.weather;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  },
+  created() {
+    this.getWeather();
   }
 };
 </script>

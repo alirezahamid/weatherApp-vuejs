@@ -7,9 +7,12 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     strict: true,
     state: {
+
         city: JSON.parse(window.localStorage.getItem('location') || ' '),
         currentWeatherData: [],
         dailyWeatherData: []
+
+
     },
     getters: {
         getIcon(state) {
@@ -26,13 +29,14 @@ const store = new Vuex.Store({
         updateCity(state, city) {
             state.city = city
         },
+
         setCurrentWeatherData(state, currentWeatherData) {
             state.currentWeatherData = currentWeatherData
         },
         setDailyWeatherData(state, dailyWeatherData) {
             state.dailyWeatherData = dailyWeatherData
-        }
 
+        }
     },
     actions: {
         getCurrentWeatherData({

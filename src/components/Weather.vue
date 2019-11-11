@@ -33,9 +33,6 @@
               </v-list-item-icon>
               <v-list-item-subtitle>{{currentWeatherData[0].rh}}%</v-list-item-subtitle>
             </v-list-item>
-
-            <!-- <v-slider v-model="time" :max="6" :tick-labels="labels" class="mx-4" ticks></v-slider> -->
-
             <v-list class="transparent">
               <v-list-item v-for="(day,index) in dailyWeatherData" :key="index">
                 <v-list-item-title>{{ day.valid_date }}</v-list-item-title>
@@ -48,10 +45,6 @@
               </v-list-item>
             </v-list>
             <v-divider></v-divider>
-
-            <!-- <v-card-actions>
-              <v-btn text>Full Report</v-btn>
-            </v-card-actions>-->
           </v-card>
         </v-col>
       </v-row>
@@ -61,14 +54,11 @@
 
 <script>
 /* eslint-disable */
-
 import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   name: "weather",
-
   computed: {
     ...mapState(["currentWeatherData", "dailyWeatherData"]),
-    // ...mapGetters(["roundTemp", "getIcon", "roundSpeed"])
     ...mapGetters(["getIcon", "getDailyIcon"])
   },
   methods: {},

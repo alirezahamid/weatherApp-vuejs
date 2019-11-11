@@ -27,7 +27,7 @@
             </v-list-item>
 
             <v-card-actions>
-              <v-btn depressed>Finde</v-btn>
+              <v-btn to="/weather" depressed>Finde</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>

@@ -13,12 +13,21 @@
                   <i class="baseline-location_city"></i>
                 </v-list-item-title>
                 <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
-                <v-text-field class="mt-5" label="Find your City" clearable outlined dense></v-text-field>
+                <v-text-field
+                  class="mt-5"
+                  label="Find your City"
+                  clearable
+                  outlined
+                  dense
+                  :value="city"
+                  @input="updateCity"
+                  placeholder="Enter yout city..."
+                ></v-text-field>
               </v-list-item-content>
             </v-list-item>
 
             <v-card-actions>
-              <v-btn depressed>Finde</v-btn>
+              <v-btn to="/weather" depressed>Finde</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -28,7 +37,16 @@
 </template>
 
 <script>
+/* eslint-disable */
+import { mapState, mapMutations } from "vuex";
 export default {
-  name: "finder"
+  name: "finder",
+
+  computed: {
+    ...mapState(["city"])
+  },
+  methods: {
+    ...mapMutations(["updateCity"])
+  }
 };
 </script>

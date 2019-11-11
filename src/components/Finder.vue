@@ -21,6 +21,7 @@
                   dense
                   :value="city"
                   @input="updateCity"
+                  placeholder="Enter yout city..."
                 ></v-text-field>
               </v-list-item-content>
             </v-list-item>

@@ -38,7 +38,9 @@
                 <v-list-item-title>{{ day.valid_date }}</v-list-item-title>
 
                 <v-list-item-icon>
-                  <v-img :src="getDailyIcon"></v-img>
+                  <v-img
+                    :src="'https://www.weatherbit.io/static/img/icons/'+ day.weather.icon + '.png'"
+                  ></v-img>
                 </v-list-item-icon>
 
                 <v-list-item-subtitle class="text-right">{{Math.round(day.temp)}}&deg;C</v-list-item-subtitle>

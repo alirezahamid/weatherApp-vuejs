@@ -13,7 +13,7 @@ const store = new Vuex.Store({
   },
   getters: {
     getIcon(state) {
-      let icon = state.currentWeatherData[0].weather.icon;
+      let icon = state.currentWeatherData.weather.icon;
       return "https://www.weatherbit.io/static/img/icons/" + icon + ".png";
     }
   },
@@ -36,7 +36,7 @@ const store = new Vuex.Store({
         key = "key=d278d8fd45ac4a779a5949bd6ee4f37e";
       Axios.get(url + "?" + key + "&" + "city=" + this.state.city)
         .then(res => {
-          commit("setCurrentWeatherData", res.data.data);
+          commit("setCurrentWeatherData", res.data.data[0]);
         })
         .catch(err => {
           return err;

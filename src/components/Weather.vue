@@ -6,14 +6,15 @@
           <v-card class="mx-auto" color="#F9F9F9" max-width="400">
             <v-list-item two-line>
               <v-list-item-content>
-                <v-list-item-title class="headline">{{currentWeatherData[0].city_name}}</v-list-item-title>
-                <v-list-item-subtitle>{{currentWeatherData[0].ob_time}}</v-list-item-subtitle>
+                <div class="overline mb-4">{{currentWeatherData.weather.description}}</div>
+                <v-list-item-title class="headline">{{currentWeatherData.city_name}}</v-list-item-title>
+                <v-list-item-subtitle>{{currentWeatherData.ob_time}}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
             <v-card-text>
               <v-row align="center">
-                <v-col class="display-3" cols="6">{{Math.round(currentWeatherData[0].temp)}}&deg;C</v-col>
+                <v-col class="display-3" cols="6">{{Math.round(currentWeatherData.temp)}}&deg;C</v-col>
                 <v-col cols="6">
                   <v-img :src="getIcon" alt="Sunny image" width="100"></v-img>
                 </v-col>
@@ -24,14 +25,14 @@
               <v-list-item-icon>
                 <v-icon>mdi-send</v-icon>
               </v-list-item-icon>
-              <v-list-item-subtitle>{{parseInt(currentWeatherData[0].wind_spd * 3.6)}} km/h</v-list-item-subtitle>
+              <v-list-item-subtitle>{{parseInt(currentWeatherData.wind_spd * 3.6)}} km/h</v-list-item-subtitle>
             </v-list-item>
 
             <v-list-item>
               <v-list-item-icon>
                 <v-icon>mdi-cloud-download</v-icon>
               </v-list-item-icon>
-              <v-list-item-subtitle>{{currentWeatherData[0].rh}}%</v-list-item-subtitle>
+              <v-list-item-subtitle>{{currentWeatherData.rh}}%</v-list-item-subtitle>
             </v-list-item>
             <v-list class="transparent">
               <v-list-item v-for="(day,index) in dailyWeatherData" :key="index">
